@@ -35,7 +35,7 @@ public class TeamRepository {
     }
 
     public long count() {
-        return em.createQuery("select count(t) from Team t", long.class)
+        return em.createQuery("select count(t) from Team t", Long.class)
                 .getSingleResult();
     }
 }
