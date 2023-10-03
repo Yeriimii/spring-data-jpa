@@ -60,4 +60,18 @@ class MemberRepositoryTest {
         long deleteCount = memberRepository.count();
         assertThat(deleteCount).isEqualTo(0);
     }
+
+    @Test  // JpaRepositoryTest 에서 사용했던 테스트가 그대로 작동한다.
+    public void findByUsernameAndAgeGreaterThen() {
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("AAA", 20);
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+
+        List<Member> result = memberRepository.findByUsernameAndAgeGreaterThan("AAA", 15);
+
+        assertThat(result.get(0).getUsername()).isEqualTo("AAA");
+        assertThat(result.get(0).getAge()).isEqualTo(20);
+        assertThat(result.size()).isEqualTo(1);
+    }
 }
